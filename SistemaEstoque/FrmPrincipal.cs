@@ -35,5 +35,11 @@ namespace SistemaEstoque
             SistemaEstoque.Telas.FrmListaLocalEstoque frm = new Telas.FrmListaLocalEstoque();
             frm.Show();
         }
+
+        private void movimentaçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SistemaEstoque.Telas.FrmListaMovimentacao frm = new FrmListaMovimentacao();
+            frm.Show();
+        }
     }
 }
