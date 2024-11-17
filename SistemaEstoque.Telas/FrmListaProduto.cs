@@ -64,5 +64,46 @@ namespace SistemaEstoque.Telas
             // Atualiza a grid após fechar o formulário de edição
             this.produtosTableAdapter.Fill(this.sistemaEstoqueDataSet.produtos);
         }
+
+        private void BtnExcluirProduto_Click(object sender, EventArgs e)
+        {
+            if (bsGrid.Current == null)
+            {
+                MessageBox.Show("Por favor, selecione um produto para excluir.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtém a linha selecionada
+            DataRowView drv = (DataRowView)bsGrid.Current;
+            int produtoId = Convert.ToInt32(drv["id"]);
+
+            // Confirmação de exclusão
+            var confirmResult = MessageBox.Show(
+                $"Tem certeza de que deseja excluir o produto '{drv["nome"]}'?",
+                "Confirmação de Exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                try
+                {
+                    // Exclui o produto do banco de dados
+                    Banco.tbProduto produto = new Banco.tbProduto { id = produtoId };
+
+                    Banco.tbProduto.Excluir(produto); // Método para realizar a exclusão no banco
+
+                    // Atualiza a lista de produtos
+                    this.produtosTableAdapter.Fill(this.sistemaEstoqueDataSet.produtos);
+
+                    MessageBox.Show("Produto excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocorreu um erro ao tentar excluir o produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

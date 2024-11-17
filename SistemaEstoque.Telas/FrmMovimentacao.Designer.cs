@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnFechar = new System.Windows.Forms.Button();
             this.BtnSalvar = new System.Windows.Forms.Button();
@@ -40,9 +41,21 @@
             this.chkSaida = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.CmbProduto = new System.Windows.Forms.ComboBox();
             this.CmbLocalEstoque = new System.Windows.Forms.ComboBox();
+            this.localestoqueBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sistemaEstoqueDataSet5 = new SistemaEstoque.Telas.SistemaEstoqueDataSet5();
+            this.produtosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.localestoqueTableAdapter = new SistemaEstoque.Telas.SistemaEstoqueDataSet5TableAdapters.localestoqueTableAdapter();
+            this.CmbProduto = new System.Windows.Forms.ComboBox();
+            this.sistemaEstoqueDataSet6 = new SistemaEstoque.Telas.SistemaEstoqueDataSet6();
+            this.produtosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.produtosTableAdapter1 = new SistemaEstoque.Telas.SistemaEstoqueDataSet6TableAdapters.produtosTableAdapter();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.localestoqueBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemaEstoqueDataSet5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemaEstoqueDataSet6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtosBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -156,29 +169,67 @@
             this.label5.TabIndex = 17;
             this.label5.Text = "SELECIONE O LOCAL DE ESTOQUE";
             // 
-            // CmbProduto
-            // 
-            this.CmbProduto.FormattingEnabled = true;
-            this.CmbProduto.Location = new System.Drawing.Point(12, 139);
-            this.CmbProduto.Name = "CmbProduto";
-            this.CmbProduto.Size = new System.Drawing.Size(188, 21);
-            this.CmbProduto.TabIndex = 18;
-            // 
             // CmbLocalEstoque
             // 
+            this.CmbLocalEstoque.DataSource = this.localestoqueBindingSource;
+            this.CmbLocalEstoque.DisplayMember = "nome";
             this.CmbLocalEstoque.FormattingEnabled = true;
             this.CmbLocalEstoque.Location = new System.Drawing.Point(12, 238);
             this.CmbLocalEstoque.Name = "CmbLocalEstoque";
             this.CmbLocalEstoque.Size = new System.Drawing.Size(188, 21);
             this.CmbLocalEstoque.TabIndex = 19;
+            this.CmbLocalEstoque.ValueMember = "nome";
+            // 
+            // localestoqueBindingSource
+            // 
+            this.localestoqueBindingSource.DataMember = "localestoque";
+            this.localestoqueBindingSource.DataSource = this.sistemaEstoqueDataSet5;
+            // 
+            // sistemaEstoqueDataSet5
+            // 
+            this.sistemaEstoqueDataSet5.DataSetName = "SistemaEstoqueDataSet5";
+            this.sistemaEstoqueDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // produtosBindingSource
+            // 
+            this.produtosBindingSource.DataMember = "produtos";
+            // 
+            // localestoqueTableAdapter
+            // 
+            this.localestoqueTableAdapter.ClearBeforeFill = true;
+            // 
+            // CmbProduto
+            // 
+            this.CmbProduto.DataSource = this.produtosBindingSource1;
+            this.CmbProduto.DisplayMember = "nome";
+            this.CmbProduto.FormattingEnabled = true;
+            this.CmbProduto.Location = new System.Drawing.Point(12, 139);
+            this.CmbProduto.Name = "CmbProduto";
+            this.CmbProduto.Size = new System.Drawing.Size(188, 21);
+            this.CmbProduto.TabIndex = 20;
+            this.CmbProduto.ValueMember = "nome";
+            // 
+            // sistemaEstoqueDataSet6
+            // 
+            this.sistemaEstoqueDataSet6.DataSetName = "SistemaEstoqueDataSet6";
+            this.sistemaEstoqueDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // produtosBindingSource1
+            // 
+            this.produtosBindingSource1.DataMember = "produtos";
+            this.produtosBindingSource1.DataSource = this.sistemaEstoqueDataSet6;
+            // 
+            // produtosTableAdapter1
+            // 
+            this.produtosTableAdapter1.ClearBeforeFill = true;
             // 
             // FrmMovimentacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 533);
-            this.Controls.Add(this.CmbLocalEstoque);
             this.Controls.Add(this.CmbProduto);
+            this.Controls.Add(this.CmbLocalEstoque);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.chkSaida);
@@ -193,6 +244,11 @@
             this.Text = "CADASTRO DE MOVIMENTAÇÃO";
             this.Load += new System.EventHandler(this.FrmMovimentacao_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.localestoqueBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemaEstoqueDataSet5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemaEstoqueDataSet6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtosBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,7 +268,16 @@
         private System.Windows.Forms.CheckBox chkSaida;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox CmbProduto;
         private System.Windows.Forms.ComboBox CmbLocalEstoque;
+        private SistemaEstoqueDataSet4 sistemaEstoqueDataSet4;
+        private System.Windows.Forms.BindingSource produtosBindingSource;
+        private SistemaEstoqueDataSet4TableAdapters.produtosTableAdapter produtosTableAdapter;
+        private SistemaEstoqueDataSet5 sistemaEstoqueDataSet5;
+        private System.Windows.Forms.BindingSource localestoqueBindingSource;
+        private SistemaEstoqueDataSet5TableAdapters.localestoqueTableAdapter localestoqueTableAdapter;
+        private System.Windows.Forms.ComboBox CmbProduto;
+        private SistemaEstoqueDataSet6 sistemaEstoqueDataSet6;
+        private System.Windows.Forms.BindingSource produtosBindingSource1;
+        private SistemaEstoqueDataSet6TableAdapters.produtosTableAdapter produtosTableAdapter1;
     }
 }

@@ -105,6 +105,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SistemaEstoqueDataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SistemaEstoqueDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SistemaEstoqueDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaEstoqueDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SistemaEstoqueDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaEstoqueDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SistemaEstoqueDataSet6.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmListaLocalEstoque.resx">
@@ -175,6 +190,39 @@
     </None>
     <None Include="SistemaEstoqueDataSet3.xss">
       <DependentUpon>SistemaEstoqueDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="SistemaEstoqueDataSet4.xsc">
+      <DependentUpon>SistemaEstoqueDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="SistemaEstoqueDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaEstoqueDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SistemaEstoqueDataSet4.xss">
+      <DependentUpon>SistemaEstoqueDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="SistemaEstoqueDataSet5.xsc">
+      <DependentUpon>SistemaEstoqueDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="SistemaEstoqueDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaEstoqueDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SistemaEstoqueDataSet5.xss">
+      <DependentUpon>SistemaEstoqueDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="SistemaEstoqueDataSet6.xsc">
+      <DependentUpon>SistemaEstoqueDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="SistemaEstoqueDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaEstoqueDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SistemaEstoqueDataSet6.xss">
+      <DependentUpon>SistemaEstoqueDataSet6.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

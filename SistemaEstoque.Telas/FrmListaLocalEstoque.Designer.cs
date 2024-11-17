@@ -1,4 +1,9 @@
-﻿namespace SistemaEstoque.Telas
+﻿using System;
+using System.Data.SqlClient;
+using System.Data;
+using System.Windows.Forms;
+
+namespace SistemaEstoque.Telas
 {
     partial class FrmListaLocalEstoque
     {
@@ -106,6 +111,7 @@
             this.BtnExcluirLocaldeEstoque.TabIndex = 2;
             this.BtnExcluirLocaldeEstoque.Text = "EXCLUIR LOCAL DE ESTOQUE";
             this.BtnExcluirLocaldeEstoque.UseVisualStyleBackColor = true;
+            this.BtnExcluirLocaldeEstoque.Click += new System.EventHandler(this.BtnExcluirLocaldeEstoque_Click);
             // 
             // BtnAlterarLocaldeEstoque
             // 
@@ -212,6 +218,55 @@
             ((System.ComponentModel.ISupportInitialize)(this.sistemaEstoqueDataSet2)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        private void BtnExcluirLocaldeEstoque_Click(object sender, EventArgs e)
+        {
+            if (bsGrid.Current == null)
+            {
+                MessageBox.Show("Por favor, selecione um local de estoque para excluir.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataRowView drv = (DataRowView)bsGrid.Current;
+            int localEstoqueId = Convert.ToInt32(drv["id"]);
+
+            var confirmResult = MessageBox.Show(
+                $"Tem certeza de que deseja excluir o local de estoque '{drv["nome"]}'?",
+                "Confirmação de Exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                try
+                {
+                    Banco.tbLocalEstoque localEstoque = new Banco.tbLocalEstoque { id = localEstoqueId };
+
+                    // Abrindo a conexão explicitamente
+                    using (var connection = new SqlConnection("Data Source=DESKTOP-KQ61GO6\\MSSQLSERVER01;Initial Catalog=SistemaEstoque;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+                    {
+                        connection.Open(); // Abre a conexão
+
+                        // Exclui o local de estoque do banco de dados
+                        string query = "DELETE FROM localestoque WHERE id = @id";
+                        using (var command = new SqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@id", localEstoque.id);
+                            command.ExecuteNonQuery(); // Executa a exclusão
+                        }
+                    }
+
+                    // Se a exclusão foi bem-sucedida, recarrega os dados
+                    MessageBox.Show("Local de Estoque excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData(); // Recarrega a lista de locais de estoque
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocorreu um erro ao tentar excluir o local de estoque: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         #endregion

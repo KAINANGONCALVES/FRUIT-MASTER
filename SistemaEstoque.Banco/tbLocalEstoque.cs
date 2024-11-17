@@ -7,30 +7,26 @@ namespace SistemaEstoque.Banco
 {
     public class tbLocalEstoque
     {
-
         public int id { get; set; }
         public string Nome { get; set; }
 
         public bool inserir()
-
         {
             try
             {
                 SqlCommand comando = new SqlCommand
                 {
                     Connection = SistemaEstoque.Utilitarios.ConexaoBanco.conexao,
-
-                    CommandText = "INSERT INTO localestoque VALUES (@nome)"
+                    CommandText = "INSERT INTO localestoque (nome) VALUES (@nome)"
                 };
-                comando.Parameters.AddWithValue("nome", Nome);
+                comando.Parameters.AddWithValue("@nome", Nome);
 
                 comando.ExecuteNonQuery();
                 return true;
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao inserir o Local de Estoque. Descrição!" + ex.Message.ToString());
+                MessageBox.Show("Erro ao inserir o Local de Estoque. Descrição: " + ex.Message);
                 return false;
             }
         }
@@ -39,41 +35,21 @@ namespace SistemaEstoque.Banco
         {
             try
             {
+                SqlCommand comando = new SqlCommand
+                {
+                    Connection = SistemaEstoque.Utilitarios.ConexaoBanco.conexao,
+                    CommandText = "UPDATE localestoque SET nome = @nome WHERE id = @id"
+                };
 
-                SqlCommand comando = new SqlCommand();
-                comando.Connection = SistemaEstoque.Utilitarios.ConexaoBanco.conexao;
+                comando.Parameters.AddWithValue("@id", id);
+                comando.Parameters.AddWithValue("@nome", Nome);
 
-                comando.CommandText = "UPDATE INTO localestoque SET nome = @nome WHERE ID = @ID";
-                comando.Parameters.AddWithValue("id", id);
-                comando.Parameters.AddWithValue("nome", Nome);
                 comando.ExecuteNonQuery();
                 return true;
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao alterar  Local de Esatoque. Descrição!" + ex.Message.ToString());
-                return false;
-            }
-        }
-
-        public bool excluir()
-        {
-            try
-            {
-
-                SqlCommand comando = new SqlCommand();
-                comando.Connection = SistemaEstoque.Utilitarios.ConexaoBanco.conexao;
-
-                comando.CommandText = "DELET FROM localestoque WHERE ID = @ID";
-                comando.Parameters.AddWithValue("id", id);
-                comando.ExecuteNonQuery();
-                return true;
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro o excluir o local de Estoque. Descrição!" + ex.Message.ToString());
+                MessageBox.Show("Erro ao alterar o Local de Estoque. Descrição: " + ex.Message);
                 return false;
             }
         }
@@ -87,10 +63,8 @@ namespace SistemaEstoque.Banco
                 using (SqlCommand comando = new SqlCommand())
                 {
                     comando.Connection = SistemaEstoque.Utilitarios.ConexaoBanco.conexao;
-                    comando.CommandText = "SELECT * FROM Local Estoque";
-                    DataTable dtRetorno = new DataTable();
-                    dtRetorno.Load(comando.ExecuteReader());
-                    comando.ExecuteReader();
+                    comando.CommandText = "SELECT * FROM localestoque";
+                    dataTable.Load(comando.ExecuteReader());
                     return dataTable;
                 }
             }
@@ -98,6 +72,29 @@ namespace SistemaEstoque.Banco
             {
                 MessageBox.Show("Erro ao consultar o Local de Estoque. Descrição: " + ex.Message);
                 return null;
+            }
+        }
+
+        public bool Excluir()
+        {
+            try
+            {
+                using (var connection = SistemaEstoque.Utilitarios.ConexaoBanco.conexao) // Usando a conexão já existente
+                {
+                    string query = "DELETE FROM localestoque WHERE id = @id";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao excluir o Local de Estoque. Descrição: " + ex.Message);
+                return false;
             }
         }
     }

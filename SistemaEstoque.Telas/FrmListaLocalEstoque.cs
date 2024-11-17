@@ -24,6 +24,7 @@ namespace SistemaEstoque.Telas
         {
             try
             {
+                // Preenche o DataGrid com os dados do banco, ajustando para localestoque
                 this.localestoqueTableAdapter.Fill(this.sistemaEstoqueDataSet2.localestoque);
                 bsGrid.DataSource = this.sistemaEstoqueDataSet2.localestoque; // Vincula o DataSource
                 grdLocalEstoque.DataSource = bsGrid; // Define a grid
@@ -41,12 +42,12 @@ namespace SistemaEstoque.Telas
 
         private void TxtFiltro_TextChanged(object sender, EventArgs e)
         {
-            bsGrid.Filter = "nome LIKE '%" + TxtFiltro.Text + "%'";
+            bsGrid.Filter = "nome LIKE '%" + TxtFiltro.Text + "%'"; // Filtra pela coluna nome
         }
 
         private void BtnNovo_Click(object sender, EventArgs e)
         {
-            FrmLocalEstoque frm = new FrmLocalEstoque(false, null); // Supondo que o formulário de produtos tem esse construtor
+            FrmLocalEstoque frm = new FrmLocalEstoque(false, null); // Supondo que o formulário de locais de estoque tem esse construtor
             frm.ShowDialog();
 
             LoadData(); // Recarrega os dados após a adição de um novo local de estoque
@@ -65,7 +66,7 @@ namespace SistemaEstoque.Telas
                 Nome = drv["nome"].ToString(),
             };
 
-            // Abre o formulário de produtos para edição
+            // Abre o formulário de locais de estoque para edição
             FrmLocalEstoque frm = new FrmLocalEstoque(true, localEstoque);
             frm.ShowDialog();
 

@@ -59,30 +59,6 @@ namespace SistemaEstoque.Banco
             }
         }
 
-        public bool Excluir()
-        {
-            try
-            {
-                using (var connection = new SqlConnection("sua_string_de_conexao"))
-                {
-                    connection.Open();
-                    string query = "DELETE FROM produtos WHERE id = @id";
-
-                    using (var command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@id", id);
-                        command.ExecuteNonQuery();
-                    }
-                }
-                return true; // Retorna true se a exclusão for bem-sucedida
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao excluir o produto. Descrição: " + ex.Message);
-                return false;
-            }
-        }
-
         public DataTable Consulta()
         {
             DataTable dataTable = new DataTable();
@@ -103,6 +79,36 @@ namespace SistemaEstoque.Banco
                 MessageBox.Show("Erro ao consultar o produto. Descrição: " + ex.Message);
                 return null;
             }
+        }
+
+        public static bool Excluir(tbProduto produto)
+        {
+            try
+            {
+                using (var connection = new SqlConnection("Data Source=DESKTOP-KQ61GO6\\MSSQLSERVER01;Initial Catalog=SistemaEstoque;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+                {
+                    connection.Open();
+                    string query = "DELETE FROM produtos WHERE id = @id";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        // Corrigido para usar 'produto.id' em vez de 'id'
+                        command.Parameters.AddWithValue("@id", produto.id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                return true; // Retorna true se a exclusão for bem-sucedida
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao excluir o produto. Descrição: " + ex.Message);
+                return false;
+            }
+        }
+
+        public static void Excluir(tbMovimentacao movimentacao)
+        {
+            throw new NotImplementedException();
         }
     }
 }
