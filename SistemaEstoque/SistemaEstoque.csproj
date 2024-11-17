@@ -75,6 +75,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -98,6 +99,36 @@
       <Project>{24a0ae65-2c79-42a6-b758-a7eb39ae32e6}</Project>
       <Name>SistemaEstoque.Utilitarios</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fotoUsuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fundo sistema.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cara.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CastrarProduto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\registro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cadastro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\celeiro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\equipe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alterar-usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desligar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

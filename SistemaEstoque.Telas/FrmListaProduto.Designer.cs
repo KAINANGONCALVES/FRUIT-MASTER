@@ -32,8 +32,6 @@ namespace SistemaEstoque.Telas
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnFechar = new System.Windows.Forms.Button();
-            this.BtnNovo = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grd = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,9 +43,12 @@ namespace SistemaEstoque.Telas
             this.TxtFiltro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.produtosTableAdapter = new SistemaEstoque.Telas.SistemaEstoqueDataSetTableAdapters.produtosTableAdapter();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.BtnExcluirProduto = new System.Windows.Forms.Button();
             this.BtnAlterarProduto = new System.Windows.Forms.Button();
-            this.produtosTableAdapter = new SistemaEstoque.Telas.SistemaEstoqueDataSetTableAdapters.produtosTableAdapter();
+            this.BtnFechar = new System.Windows.Forms.Button();
+            this.BtnNovo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).BeginInit();
@@ -60,6 +61,7 @@ namespace SistemaEstoque.Telas
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.BtnFechar);
             this.panel1.Controls.Add(this.BtnNovo);
             this.panel1.Location = new System.Drawing.Point(12, 12);
@@ -67,33 +69,12 @@ namespace SistemaEstoque.Telas
             this.panel1.Size = new System.Drawing.Size(695, 59);
             this.panel1.TabIndex = 0;
             // 
-            // BtnFechar
-            // 
-            this.BtnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnFechar.Location = new System.Drawing.Point(139, 3);
-            this.BtnFechar.Name = "BtnFechar";
-            this.BtnFechar.Size = new System.Drawing.Size(107, 53);
-            this.BtnFechar.TabIndex = 1;
-            this.BtnFechar.Text = "FECHAR";
-            this.BtnFechar.UseVisualStyleBackColor = true;
-            this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
-            // 
-            // BtnNovo
-            // 
-            this.BtnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnNovo.Location = new System.Drawing.Point(15, 3);
-            this.BtnNovo.Name = "BtnNovo";
-            this.BtnNovo.Size = new System.Drawing.Size(107, 53);
-            this.BtnNovo.TabIndex = 0;
-            this.BtnNovo.Text = "NOVO PRODUTO";
-            this.BtnNovo.UseVisualStyleBackColor = true;
-            this.BtnNovo.Click += new System.EventHandler(this.BtnNovo_Click);
-            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.grd);
             this.panel2.Controls.Add(this.TxtFiltro);
             this.panel2.Controls.Add(this.label1);
@@ -157,7 +138,7 @@ namespace SistemaEstoque.Telas
             // 
             // TxtFiltro
             // 
-            this.TxtFiltro.Location = new System.Drawing.Point(15, 33);
+            this.TxtFiltro.Location = new System.Drawing.Point(15, 43);
             this.TxtFiltro.Name = "TxtFiltro";
             this.TxtFiltro.Size = new System.Drawing.Size(258, 20);
             this.TxtFiltro.TabIndex = 1;
@@ -166,7 +147,8 @@ namespace SistemaEstoque.Telas
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 17);
+            this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(15, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(143, 13);
             this.label1.TabIndex = 0;
@@ -177,6 +159,7 @@ namespace SistemaEstoque.Telas
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.BtnExcluirProduto);
             this.panel3.Controls.Add(this.BtnAlterarProduto);
             this.panel3.Location = new System.Drawing.Point(524, 77);
@@ -184,43 +167,89 @@ namespace SistemaEstoque.Telas
             this.panel3.Size = new System.Drawing.Size(183, 311);
             this.panel3.TabIndex = 2;
             // 
+            // produtosTableAdapter
+            // 
+            this.produtosTableAdapter.ClearBeforeFill = true;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.cara;
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.Location = new System.Drawing.Point(612, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(104, 93);
+            this.panel4.TabIndex = 2;
+            // 
             // BtnExcluirProduto
             // 
+            this.BtnExcluirProduto.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.excluir;
+            this.BtnExcluirProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnExcluirProduto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnExcluirProduto.Location = new System.Drawing.Point(29, 115);
+            this.BtnExcluirProduto.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnExcluirProduto.Location = new System.Drawing.Point(29, 149);
             this.BtnExcluirProduto.Name = "BtnExcluirProduto";
-            this.BtnExcluirProduto.Size = new System.Drawing.Size(135, 70);
+            this.BtnExcluirProduto.Size = new System.Drawing.Size(132, 70);
             this.BtnExcluirProduto.TabIndex = 2;
             this.BtnExcluirProduto.Text = "EXCLUIR PRODUTO";
+            this.BtnExcluirProduto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnExcluirProduto.UseVisualStyleBackColor = true;
             this.BtnExcluirProduto.Click += new System.EventHandler(this.BtnExcluirProduto_Click);
             // 
             // BtnAlterarProduto
             // 
+            this.BtnAlterarProduto.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.retomar;
+            this.BtnAlterarProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnAlterarProduto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnAlterarProduto.Location = new System.Drawing.Point(29, 17);
+            this.BtnAlterarProduto.Location = new System.Drawing.Point(29, 43);
             this.BtnAlterarProduto.Name = "BtnAlterarProduto";
-            this.BtnAlterarProduto.Size = new System.Drawing.Size(135, 70);
+            this.BtnAlterarProduto.Size = new System.Drawing.Size(132, 70);
             this.BtnAlterarProduto.TabIndex = 1;
             this.BtnAlterarProduto.Text = "ALTERAR PRODUTO";
+            this.BtnAlterarProduto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnAlterarProduto.UseVisualStyleBackColor = true;
             this.BtnAlterarProduto.Click += new System.EventHandler(this.BtnAlterarProduto_Click);
             // 
-            // produtosTableAdapter
+            // BtnFechar
             // 
-            this.produtosTableAdapter.ClearBeforeFill = true;
+            this.BtnFechar.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.seta_esquerda;
+            this.BtnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnFechar.Location = new System.Drawing.Point(139, -12);
+            this.BtnFechar.Name = "BtnFechar";
+            this.BtnFechar.Size = new System.Drawing.Size(107, 71);
+            this.BtnFechar.TabIndex = 1;
+            this.BtnFechar.Text = "VOLTAR";
+            this.BtnFechar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnFechar.UseVisualStyleBackColor = true;
+            this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
+            // 
+            // BtnNovo
+            // 
+            this.BtnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnNovo.Image = global::SistemaEstoque.Telas.Properties.Resources.cadastro;
+            this.BtnNovo.Location = new System.Drawing.Point(15, -12);
+            this.BtnNovo.Name = "BtnNovo";
+            this.BtnNovo.Size = new System.Drawing.Size(107, 71);
+            this.BtnNovo.TabIndex = 0;
+            this.BtnNovo.Text = "NOVO PRODUTO";
+            this.BtnNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnNovo.UseVisualStyleBackColor = true;
+            this.BtnNovo.Click += new System.EventHandler(this.BtnNovo_Click);
             // 
             // FrmListaProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(91)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(719, 400);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FrmListaProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LISTA DE PRODUTOS";
+            this.Text = "FRUIT MASTER - LISTA DE PRODUTOS";
             this.Load += new System.EventHandler(this.FrmListaProduto_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -254,5 +283,6 @@ namespace SistemaEstoque.Telas
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descricaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pesoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Panel panel4;
     }
 }

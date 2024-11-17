@@ -49,23 +49,29 @@
             // 
             // BtnFechar
             // 
+            this.BtnFechar.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.seta_esquerda;
+            this.BtnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnFechar.Location = new System.Drawing.Point(138, 13);
+            this.BtnFechar.Location = new System.Drawing.Point(138, 0);
             this.BtnFechar.Name = "BtnFechar";
-            this.BtnFechar.Size = new System.Drawing.Size(100, 53);
+            this.BtnFechar.Size = new System.Drawing.Size(100, 78);
             this.BtnFechar.TabIndex = 1;
-            this.BtnFechar.Text = "FECHAR";
+            this.BtnFechar.Text = "VOLTAR";
+            this.BtnFechar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnFechar.UseVisualStyleBackColor = true;
             this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
             // 
             // BtnSalvar
             // 
+            this.BtnSalvar.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.verificar;
+            this.BtnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnSalvar.Location = new System.Drawing.Point(13, 13);
+            this.BtnSalvar.Location = new System.Drawing.Point(13, 0);
             this.BtnSalvar.Name = "BtnSalvar";
-            this.BtnSalvar.Size = new System.Drawing.Size(100, 53);
+            this.BtnSalvar.Size = new System.Drawing.Size(100, 78);
             this.BtnSalvar.TabIndex = 0;
             this.BtnSalvar.Text = "SALVAR";
+            this.BtnSalvar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnSalvar.UseVisualStyleBackColor = true;
             this.BtnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
@@ -79,7 +85,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 124);
+            this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(22, 123);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(218, 13);
             this.label1.TabIndex = 4;
@@ -89,6 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(91)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(544, 217);
             this.Controls.Add(this.TxtNomeLocalEstoque);
             this.Controls.Add(this.label1);

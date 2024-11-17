@@ -71,22 +71,30 @@ namespace SistemaEstoque.Telas
             // BtnFechar
             // 
             this.BtnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnFechar.Location = new System.Drawing.Point(139, 3);
+            this.BtnFechar.Image = global::SistemaEstoque.Telas.Properties.Resources.excluir;
+            this.BtnFechar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnFechar.Location = new System.Drawing.Point(191, 0);
             this.BtnFechar.Name = "BtnFechar";
-            this.BtnFechar.Size = new System.Drawing.Size(107, 53);
+            this.BtnFechar.Size = new System.Drawing.Size(107, 59);
             this.BtnFechar.TabIndex = 1;
             this.BtnFechar.Text = "FECHAR";
+            this.BtnFechar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnFechar.UseVisualStyleBackColor = true;
             this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
             // 
             // BtnNovo
             // 
+            this.BtnNovo.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.cadastro;
+            this.BtnNovo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnNovo.Location = new System.Drawing.Point(15, 3);
+            this.BtnNovo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnNovo.Location = new System.Drawing.Point(31, 0);
             this.BtnNovo.Name = "BtnNovo";
-            this.BtnNovo.Size = new System.Drawing.Size(107, 53);
+            this.BtnNovo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.BtnNovo.Size = new System.Drawing.Size(107, 59);
             this.BtnNovo.TabIndex = 0;
-            this.BtnNovo.Text = "NOVO LOCAL ESTOQUE";
+            this.BtnNovo.Text = "NOVO";
+            this.BtnNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnNovo.UseVisualStyleBackColor = true;
             this.BtnNovo.Click += new System.EventHandler(this.BtnNovo_Click);
             // 
@@ -99,28 +107,35 @@ namespace SistemaEstoque.Telas
             this.panel3.Controls.Add(this.BtnAlterarLocaldeEstoque);
             this.panel3.Location = new System.Drawing.Point(536, 77);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(171, 311);
+            this.panel3.Size = new System.Drawing.Size(171, 314);
             this.panel3.TabIndex = 3;
             // 
             // BtnExcluirLocaldeEstoque
             // 
+            this.BtnExcluirLocaldeEstoque.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.excluir;
+            this.BtnExcluirLocaldeEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnExcluirLocaldeEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnExcluirLocaldeEstoque.Location = new System.Drawing.Point(29, 115);
+            this.BtnExcluirLocaldeEstoque.Location = new System.Drawing.Point(29, 144);
             this.BtnExcluirLocaldeEstoque.Name = "BtnExcluirLocaldeEstoque";
-            this.BtnExcluirLocaldeEstoque.Size = new System.Drawing.Size(135, 70);
+            this.BtnExcluirLocaldeEstoque.Size = new System.Drawing.Size(135, 95);
             this.BtnExcluirLocaldeEstoque.TabIndex = 2;
             this.BtnExcluirLocaldeEstoque.Text = "EXCLUIR LOCAL DE ESTOQUE";
+            this.BtnExcluirLocaldeEstoque.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnExcluirLocaldeEstoque.UseVisualStyleBackColor = true;
             this.BtnExcluirLocaldeEstoque.Click += new System.EventHandler(this.BtnExcluirLocaldeEstoque_Click);
             // 
             // BtnAlterarLocaldeEstoque
             // 
+            this.BtnAlterarLocaldeEstoque.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.retomar;
+            this.BtnAlterarLocaldeEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnAlterarLocaldeEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnAlterarLocaldeEstoque.Location = new System.Drawing.Point(29, 17);
+            this.BtnAlterarLocaldeEstoque.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnAlterarLocaldeEstoque.Location = new System.Drawing.Point(29, 3);
             this.BtnAlterarLocaldeEstoque.Name = "BtnAlterarLocaldeEstoque";
-            this.BtnAlterarLocaldeEstoque.Size = new System.Drawing.Size(135, 70);
+            this.BtnAlterarLocaldeEstoque.Size = new System.Drawing.Size(132, 92);
             this.BtnAlterarLocaldeEstoque.TabIndex = 1;
             this.BtnAlterarLocaldeEstoque.Text = "ALTERAR LOCAL DE ESTOQUE";
+            this.BtnAlterarLocaldeEstoque.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnAlterarLocaldeEstoque.UseVisualStyleBackColor = true;
             this.BtnAlterarLocaldeEstoque.Click += new System.EventHandler(this.BtnAlterarLocaldeEstoque_Click);
             // 
@@ -134,7 +149,7 @@ namespace SistemaEstoque.Telas
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(12, 80);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(535, 311);
+            this.panel2.Size = new System.Drawing.Size(518, 311);
             this.panel2.TabIndex = 4;
             // 
             // grdLocalEstoque
@@ -150,7 +165,7 @@ namespace SistemaEstoque.Telas
             this.grdLocalEstoque.DataSource = this.localestoqueBindingSource;
             this.grdLocalEstoque.Location = new System.Drawing.Point(15, 59);
             this.grdLocalEstoque.Name = "grdLocalEstoque";
-            this.grdLocalEstoque.Size = new System.Drawing.Size(503, 239);
+            this.grdLocalEstoque.Size = new System.Drawing.Size(486, 239);
             this.grdLocalEstoque.TabIndex = 2;
             // 
             // idDataGridViewTextBoxColumn
@@ -187,6 +202,7 @@ namespace SistemaEstoque.Telas
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(12, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 13);
@@ -201,13 +217,14 @@ namespace SistemaEstoque.Telas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(91)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(719, 400);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Name = "FrmListaLocalEstoque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LISTA DE LOCAIS DE ESTOQUE";
+            this.Text = "FRUIT MASTER - LISTA LOCAL DE ESTOQUE";
             this.Load += new System.EventHandler(this.FrmListaLocalEstoque_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
