@@ -50,7 +50,7 @@ namespace SistemaEstoque
 
         private void movimentaçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SistemaEstoque.Telas.FrmListaMovimentacao frm = new FrmListaMovimentacao();
+            SistemaEstoque.Telas.FrmListaMovimentacao frm = new SistemaEstoque.Telas.FrmListaMovimentacao();
             frm.Show();
         }
         // Não apaga
@@ -126,7 +126,7 @@ namespace SistemaEstoque
 
         private void mOVIMENTAÇÃOToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SistemaEstoque.Telas.FrmListaMovimentacao frm = new FrmListaMovimentacao();
+            SistemaEstoque.Telas.FrmListaMovimentacao frm = new SistemaEstoque.Telas.FrmListaMovimentacao();
             frm.Show();
         }
     }

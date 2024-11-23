@@ -125,6 +125,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SistemaEstoqueDataSet6.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SistemaEstoqueDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SistemaEstoqueDataSet7.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmListaLocalEstoque.resx">
@@ -233,6 +238,17 @@
     <None Include="SistemaEstoqueDataSet6.xss">
       <DependentUpon>SistemaEstoqueDataSet6.xsd</DependentUpon>
     </None>
+    <None Include="SistemaEstoqueDataSet7.xsc">
+      <DependentUpon>SistemaEstoqueDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="SistemaEstoqueDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaEstoqueDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SistemaEstoqueDataSet7.xss">
+      <DependentUpon>SistemaEstoqueDataSet7.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SistemaEstoque.Banco\SistemaEstoque.Banco.csproj">
@@ -260,6 +276,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\excluir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lupa.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

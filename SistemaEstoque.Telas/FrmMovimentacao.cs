@@ -1,56 +1,38 @@
-﻿using SistemaEstoque.Banco;
-using System;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System;
 using System.Windows.Forms;
 
 namespace SistemaEstoque.Telas
 {
     public partial class FrmMovimentacao : Form
     {
-        private bool EstaAlterando;
-        private tbMovimentacao Movimentacao;
+        private bool EstaAlterando = false;
+        private Banco.tbMovimentacao Movimentacao;
 
-        public FrmMovimentacao(bool estaAlterando, tbMovimentacao movimentacao)
+        public FrmMovimentacao(bool estaAlterando, Banco.tbMovimentacao movimentacao)
         {
             InitializeComponent();
+
             this.EstaAlterando = estaAlterando;
             this.Movimentacao = movimentacao;
-        }
 
-        private void FrmMovimentacao_Load(object sender, EventArgs e)
-        {
-            // Carrega os dados nos ComboBoxes
-            this.produtosTableAdapter1.Fill(this.sistemaEstoqueDataSet6.produtos);
-            this.localestoqueTableAdapter.Fill(this.sistemaEstoqueDataSet5.localestoque);
-
-            // Se estamos alterando, carregar os dados nos controles
-            if (this.EstaAlterando && this.Movimentacao != null)
+            if (this.EstaAlterando)
             {
-                LoadMovimentacaoData();
-            }
+                // Preenchendo os campos do formulário ao alterar
+                TxtIdProduto.Text = Movimentacao.id_produto.ToString();
+                TxtIdLocalEstoque.Text = Movimentacao.id_localestoque.ToString();
+                TxtQuantidade.Text = Movimentacao.quantidade.ToString();
 
-            // Verifica se o CmbProduto está preenchido
-            if (CmbProduto.Items.Count == 0)
-            {
-                MessageBox.Show("Nenhum produto encontrado. Por favor, adicione produtos antes de realizar uma movimentação.");
-            }
-        }
+                // Verificando se Movimentacao.datahora() é válido
+                if (Movimentacao.datahora != null)
+                {
+                    dtpDataHora.Value = Movimentacao.datahora;
+                }
+                else
+                {
+                    dtpDataHora.Value = DateTime.Now; // Valor padrão em caso de nulo
+                }
 
-        private void LoadMovimentacaoData()
-        {
-            TxtDescricao.Text = this.Movimentacao.descricao;
-            TxtQuantidade.Text = this.Movimentacao.quantidade.ToString();
-            chkSaida.Checked = this.Movimentacao.saida;
-            dtpDataHora.Value = this.Movimentacao.datahora;
-
-            if (CmbProduto.DataSource != null && CmbProduto.Items.Count > 0)
-            {
-                CmbProduto.SelectedValue = this.Movimentacao.id_produto;
-            }
-            if (CmbLocalEstoque.DataSource != null && CmbLocalEstoque.Items.Count > 0)
-            {
-                CmbLocalEstoque.SelectedValue = this.Movimentacao.id_localestoque;
+                TxtDescricaoProduto.Text = Movimentacao.descricao; // Corrigido uso da propriedade Text
             }
         }
 
@@ -63,152 +45,98 @@ namespace SistemaEstoque.Telas
         {
             if (!ValidateInputs())
             {
-                MessageBox.Show("Por favor, preencha todos os campos corretamente.");
+                MessageBox.Show("Por favor, preencha todos os campos corretamente.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Debug para verificar valores selecionados
-            MessageBox.Show($"Produto selecionado: {CmbProduto.SelectedValue} (Tipo: {CmbProduto.SelectedValue?.GetType()})");
-            MessageBox.Show($"Local de estoque selecionado: {CmbLocalEstoque.SelectedValue} (Tipo: {CmbLocalEstoque.SelectedValue?.GetType()})");
 
             try
             {
                 if (this.EstaAlterando)
                 {
-                    UpdateMovimentacao();
+                    UpdateMovimentacao(); // Atualizando movimentação
                 }
                 else
                 {
-                    InsertMovimentacao();
+                    InsertMovimentacao(); // Inserindo nova movimentação
                 }
 
-                MessageBox.Show("Movimentação salva com sucesso.");
+                MessageBox.Show("Movimentação salva com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar movimentação: " + ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show($"Erro ao salvar movimentação: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private bool ValidateInputs()
         {
-            bool validProduct = CmbProduto.SelectedValue != null && int.TryParse(CmbProduto.SelectedValue.ToString(), out _);
-            bool validLocation = CmbLocalEstoque.SelectedValue != null && int.TryParse(CmbLocalEstoque.SelectedValue.ToString(), out _);
-
-            if (!validProduct)
-            {
-                MessageBox.Show("Por favor, selecione um produto válido.");
-                return false; // Retorna false se não for válido
-            }
-
-            if (!validLocation)
-            {
-                MessageBox.Show("Por favor, selecione um local de estoque válido.");
-                return false; // Retorna false se não for válido
-            }
-
-            return !string.IsNullOrWhiteSpace(TxtDescricao.Text) &&
-                   int.TryParse(TxtQuantidade.Text, out _); // Verifica se a quantidade é um número
+            // Validação dos campos
+            return !string.IsNullOrWhiteSpace(TxtIdProduto.Text) &&
+                   !string.IsNullOrWhiteSpace(TxtIdLocalEstoque.Text) &&
+                   !string.IsNullOrWhiteSpace(TxtDescricaoProduto.Text) &&
+                   decimal.TryParse(TxtQuantidade.Text, out _) &&
+                   dtpDataHora.Value != null;
         }
 
         private void UpdateMovimentacao()
         {
-            this.Movimentacao.descricao = TxtDescricao.Text;
-
-            // Verifica se a quantidade é um número antes de atribuir
-            if (!int.TryParse(TxtQuantidade.Text, out int quantidade))
-            {
-                MessageBox.Show("Quantidade deve ser um número válido.");
-                return;
-            }
-            this.Movimentacao.quantidade = quantidade;
-
-            this.Movimentacao.saida = chkSaida.Checked;
+            // Atualizando os dados da movimentação
+            this.Movimentacao.id_produto = Convert.ToInt32(TxtIdProduto.Text);
+            this.Movimentacao.id_localestoque = Convert.ToInt32(TxtIdLocalEstoque.Text);
+            this.Movimentacao.quantidade = Convert.ToDecimal(TxtQuantidade.Text);
             this.Movimentacao.datahora = dtpDataHora.Value;
+            this.Movimentacao.descricao = TxtDescricaoProduto.Text;
 
-            // Certifique-se de que os valores selecionados são válidos
-            if (CmbProduto.SelectedValue != null && CmbLocalEstoque.SelectedValue != null)
-            {
-                this.Movimentacao.id_produto = Convert.ToInt32(CmbProduto.SelectedValue);
-                this.Movimentacao.id_localestoque = Convert.ToInt32(CmbLocalEstoque.SelectedValue);
-            }
-            else
-            {
-                MessageBox.Show("Por favor, selecione um produto e um local de estoque.");
-                return;
-            }
-
-            this.Movimentacao.alterar();
+            // Método para salvar alterações no banco
+            this.Movimentacao.Alterar();
         }
 
         private void InsertMovimentacao()
         {
-            if (string.IsNullOrWhiteSpace(TxtDescricao.Text))
+            // Criando uma nova movimentação
+            this.Movimentacao = new Banco.tbMovimentacao
             {
-                MessageBox.Show("A descrição não pode estar vazia.");
-                return;
-            }
-
-            if (!int.TryParse(TxtQuantidade.Text, out int quantidade))
-            {
-                MessageBox.Show("Quantidade deve ser um número válido.");
-                return;
-            }
-
-            int idProduto = Convert.ToInt32(CmbProduto.SelectedValue);
-            int idLocalEstoque = Convert.ToInt32(CmbLocalEstoque.SelectedValue);
-
-            // Verificação dos IDs antes da inserção
-            if (!ValidateForeignKeys(idProduto, idLocalEstoque))
-            {
-                return; // Não prossegue se a validação falhar
-            }
-
-            var novaMovimentacao = new tbMovimentacao
-            {
-                descricao = TxtDescricao.Text,
-                quantidade = quantidade,
-                saida = chkSaida.Checked,
+                id_produto = Convert.ToInt32(TxtIdProduto.Text),
+                id_localestoque = Convert.ToInt32(TxtIdLocalEstoque.Text),
+                quantidade = Convert.ToDecimal(TxtQuantidade.Text),
                 datahora = dtpDataHora.Value,
-                id_produto = idProduto,
-                id_localestoque = idLocalEstoque
+                descricao = TxtDescricaoProduto.Text
             };
 
-            novaMovimentacao.inserir();
+            // Método para inserir nova movimentação no banco
+            this.Movimentacao.Inserir();
         }
 
-        private bool ValidateForeignKeys(int idProduto, int idLocalEstoque)
+        private void BntPesquisarProduto_Click(object sender, EventArgs e)
         {
-            using (var connection = new SqlConnection("sua_string_de_conexao"))
+            // Abrindo o formulário de pesquisa de produtos
+            using (var frm = new SistemaEstoque.Telas.FrmListaProduto())
             {
-                connection.Open();
+                frm.ShowDialog();
 
-                // Verifica se o produto existe
-                using (var command = new SqlCommand("SELECT COUNT(*) FROM produtos WHERE id = @id", connection))
+                // Aqui você pode adicionar lógica para capturar o produto selecionado
+                if (frm.ProdutoSelecionado != null)
                 {
-                    command.Parameters.AddWithValue("@id", idProduto);
-                    int count = (int)command.ExecuteScalar();
-                    if (count == 0)
-                    {
-                        MessageBox.Show("Produto não encontrado.");
-                        return false;
-                    }
-                }
-
-                // Verifica se o local de estoque existe
-                using (var command = new SqlCommand("SELECT COUNT(*) FROM localestoque WHERE id = @id", connection))
-                {
-                    command.Parameters.AddWithValue("@id", idLocalEstoque);
-                    int count = (int)command.ExecuteScalar();
-                    if (count == 0)
-                    {
-                        MessageBox.Show("Local de estoque não encontrado.");
-                        return false;
-                    }
+                    TxtIdProduto.Text = frm.ProdutoSelecionado.id.ToString();
+                    TxtDescricaoProduto.Text = frm.ProdutoSelecionado.descricao;
                 }
             }
-            return true; // Ambos os IDs existem
+        }
+
+        private void BtnPesquisaLocalEstoque_Click(object sender, EventArgs e)
+        {
+            // Abrindo o formulário de pesquisa de locais de estoque
+            using (var frm = new SistemaEstoque.Telas.FrmListaLocalEstoque())
+            {
+                frm.ShowDialog();
+
+                // Aqui você pode adicionar lógica para capturar o local de estoque selecionado
+                if (frm.LocalEstoqueSelecionado != null)
+                {
+                    TxtIdLocalEstoque.Text = frm.LocalEstoqueSelecionado.ToString();
+                }
+            }
         }
     }
 }

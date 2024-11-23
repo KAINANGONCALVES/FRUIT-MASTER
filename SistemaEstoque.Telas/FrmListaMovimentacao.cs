@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaEstoque.Telas
@@ -20,23 +14,33 @@ namespace SistemaEstoque.Telas
             InitializeComponent();
         }
 
-        private void FrmListaMovimentacao_Load_1(object sender, EventArgs e)
-        {
-            LoadData(); // Carrega os dados ao iniciar o formulário
-        }
-
-        private void LoadData()
+        private void FrmListaMovimentacao_Load(object sender, EventArgs e)
         {
             try
             {
-                // TODO: esta linha de código carrega dados na tabela 'sistemaEstoqueDataSet3.movimentacao'. Você pode movê-la ou removê-la conforme necessário.
-                this.movimentacaoTableAdapter.Fill(this.sistemaEstoqueDataSet3.movimentacao);
-                bsGrid.DataSource = sistemaEstoqueDataSet3.movimentacao; // Define a fonte de dados do BindingSource
-                grdMovimentacao.DataSource = bsGrid; // Define a grid
+                // Carrega os dados na grid
+                AtualizarGrid();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
+                MessageBox.Show($"Erro ao carregar as movimentações: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AtualizarGrid()
+        {
+            try
+            {
+                // Carrega os dados no DataTable e atualiza o DataSource
+                this.movimentacaoTableAdapter.Fill(this.sistemaEstoqueDataSet7.movimentacao);
+                dtGrid = this.sistemaEstoqueDataSet7.movimentacao; // Atualiza o DataTable
+                bsGrid.DataSource = dtGrid;
+                grdMovimentacao.DataSource = bsGrid;
+                grdMovimentacao.Refresh(); // Atualiza visualmente a grid
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao atualizar a lista de movimentações: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -47,46 +51,104 @@ namespace SistemaEstoque.Telas
 
         private void TxtFiltro_TextChanged(object sender, EventArgs e)
         {
-            bsGrid.Filter = "nome LIKE '%" + TxtFiltro.Text + "%'";
+            try
+            {
+                // Filtra a grid com base na descrição
+                bsGrid.Filter = $"descricao LIKE '%{TxtFiltro.Text.Replace("'", "''")}%'"; 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao aplicar o filtro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnNovo_Click(object sender, EventArgs e)
         {
-            // Abre o formulário de Movimentação para criação de novo registro
-            FrmMovimentacao frm = new FrmMovimentacao(false, new Banco.tbMovimentacao());
-            frm.ShowDialog();
-
-            // Atualiza a grid após fechar o formulário de novo registro
-            LoadData();
-        }
-
-        private void BtnAlterarMovimentacao_Click(object sender, EventArgs e)
-        {
-            if (bsGrid.Current == null) return; // Verifica se há uma movimentação selecionada
-
-            DataRowView drv = (DataRowView)bsGrid.Current; // Obtém a linha selecionada
-
-            // Cria uma instância de tbMovimentacao com os dados da movimentação selecionada
-            Banco.tbMovimentacao movimentacao = new Banco.tbMovimentacao
+            try
             {
-                id = Convert.ToInt32(drv["id"]),
-                descricao = drv["descricao"].ToString(),
-                quantidade = Convert.ToInt32(drv["quantidade"]),
-                saida = Convert.ToBoolean(drv["saida"]),
-                datahora = Convert.ToDateTime(drv["datahora"]),
-                id_produto = Convert.ToInt32(drv["id_produto"]),
-                id_localestoque = Convert.ToInt32(drv["id_localestoque"])
-            };
+                // Abre o formulário de movimentação para nova entrada
+                using (FrmMovimentacao frm = new FrmMovimentacao(false, null))
+                {
+                    frm.ShowDialog();
+                }
 
-            // Abre o formulário de Movimentação para edição
-            FrmMovimentacao frm = new FrmMovimentacao(true, movimentacao);
-            frm.ShowDialog();
-
-            // Atualiza a grid após fechar o formulário de edição
-            LoadData();
+                AtualizarGrid(); // Atualiza a lista após inserir nova movimentação
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adicionar uma nova movimentação: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void BtnAlterarProduto_Click(object sender, EventArgs e)
+        {
+            if (bsGrid.Current == null)
+            {
+                MessageBox.Show("Nenhuma movimentação selecionada para alteração.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            try
+            {
+                DataRowView drv = (DataRowView)bsGrid.Current; // Obtém a linha selecionada
 
+                Banco.tbMovimentacao movimentacao = new Banco.tbMovimentacao
+                {
+                    id = Convert.ToInt32(drv["id"]),
+                    id_produto = Convert.ToInt32(drv["id_produto"]),
+                    id_localestoque = Convert.ToInt32(drv["id_localestoque"]),
+                    quantidade = Convert.ToDecimal(drv["quantidade"]),
+                    datahora = Convert.ToDateTime(drv["datahora"]),
+                    descricao = drv["descricao"].ToString()
+                };
+
+                using (FrmMovimentacao frm = new FrmMovimentacao(true, movimentacao))
+                {
+                    frm.ShowDialog();
+                }
+
+                AtualizarGrid(); // Atualiza a lista após alterar a movimentação
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao alterar a movimentação: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnExcluirProduto_Click(object sender, EventArgs e)
+        {
+            if (bsGrid.Current == null)
+            {
+                MessageBox.Show("Por favor, selecione uma movimentação para excluir.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                DataRowView drv = (DataRowView)bsGrid.Current;
+                int movimentacaoId = Convert.ToInt32(drv["id"]);
+
+                var confirmResult = MessageBox.Show(
+                    $"Tem certeza de que deseja excluir a movimentação com ID {movimentacaoId}?",
+                    "Confirmação de Exclusão",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // Passando o ID corretamente para o método Excluir
+                    Banco.tbMovimentacao.Excluir(movimentacaoId);
+
+                    AtualizarGrid(); // Atualiza a lista após a exclusão
+
+                    MessageBox.Show("Movimentação excluída com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao excluir a movimentação: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

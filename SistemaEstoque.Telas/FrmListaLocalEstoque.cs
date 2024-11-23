@@ -10,6 +10,8 @@ namespace SistemaEstoque.Telas
         private DataTable dtGrid = new DataTable();
         private BindingSource bsGrid = new BindingSource();
 
+        public object LocalEstoqueSelecionado { get; internal set; }
+
         public FrmListaLocalEstoque()
         {
             InitializeComponent();

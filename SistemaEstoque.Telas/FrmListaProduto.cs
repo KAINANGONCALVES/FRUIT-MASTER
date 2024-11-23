@@ -9,6 +9,8 @@ namespace SistemaEstoque.Telas
         private DataTable dtGrid = new DataTable();
         private BindingSource bsGrid = new BindingSource();
 
+        public Banco.tbProduto ProdutoSelecionado { get; private set; } // Alterado para tipagem correta
+
         public FrmListaProduto()
         {
             InitializeComponent();
@@ -16,10 +18,17 @@ namespace SistemaEstoque.Telas
 
         private void FrmListaProduto_Load(object sender, EventArgs e)
         {
-            // Carrega dados na tabela 'sistemaEstoqueDataSet.produtos'.
-            this.produtosTableAdapter.Fill(this.sistemaEstoqueDataSet.produtos);
-            bsGrid.DataSource = this.sistemaEstoqueDataSet.produtos; // Vincula o DataSource
-            grd.DataSource = bsGrid; // Define a grid
+            try
+            {
+                // Carrega dados na tabela 'sistemaEstoqueDataSet.produtos'
+                this.produtosTableAdapter.Fill(this.sistemaEstoqueDataSet.produtos);
+                bsGrid.DataSource = this.sistemaEstoqueDataSet.produtos; // Vincula o DataSource
+                grd.DataSource = bsGrid; // Define a grid
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar os produtos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnFechar_Click(object sender, EventArgs e)
@@ -29,40 +38,66 @@ namespace SistemaEstoque.Telas
 
         private void TxtFiltro_TextChanged(object sender, EventArgs e)
         {
-            bsGrid.Filter = "nome LIKE '%" + TxtFiltro.Text + "%'"; // Mantendo a funcionalidade de filtro.
+            try
+            {
+                bsGrid.Filter = $"nome LIKE '%{TxtFiltro.Text}%'"; // Adicionado interpolação para maior clareza
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao aplicar filtro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnNovo_Click(object sender, EventArgs e)
         {
-            // Aqui, você deve abrir um formulário para adicionar um novo produto
-            FrmProdutos frm = new FrmProdutos(false, null); // Supondo que o formulário de produtos tem esse construtor
-            frm.ShowDialog();
+            try
+            {
+                using (FrmProdutos frm = new FrmProdutos(false, null)) // Usando 'using' para liberar recursos
+                {
+                    frm.ShowDialog();
 
-            // Recarrega os dados após a adição de um novo produto
-            this.produtosTableAdapter.Fill(this.sistemaEstoqueDataSet.produtos);
+                    // Recarrega os dados após a adição de um novo produto
+                    this.produtosTableAdapter.Fill(this.sistemaEstoqueDataSet.produtos);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adicionar novo produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnAlterarProduto_Click(object sender, EventArgs e)
         {
-            if (bsGrid.Current == null) return; // Verifica se há um produto selecionado
-
-            DataRowView drv = (DataRowView)bsGrid.Current; // Obtém a linha selecionada
-
-            // Cria uma instância de tbProduto com os dados do produto selecionado
-            Banco.tbProduto produto = new Banco.tbProduto
+            if (bsGrid.Current == null)
             {
-                id = Convert.ToInt32(drv["id"]),
-                nome = drv["nome"].ToString(),
-                descricao = drv["descricao"].ToString(),
-                peso = Convert.ToDecimal(drv["peso"])
-            };
+                MessageBox.Show("Nenhum produto selecionado para alteração.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            // Abre o formulário de produtos para edição
-            FrmProdutos frm = new FrmProdutos(true, produto);
-            frm.ShowDialog();
+            try
+            {
+                DataRowView drv = (DataRowView)bsGrid.Current; // Obtém a linha selecionada
 
-            // Atualiza a grid após fechar o formulário de edição
-            this.produtosTableAdapter.Fill(this.sistemaEstoqueDataSet.produtos);
+                Banco.tbProduto produto = new Banco.tbProduto
+                {
+                    id = Convert.ToInt32(drv["id"]),
+                    nome = drv["nome"].ToString(),
+                    descricao = drv["descricao"].ToString(),
+                    peso = Convert.ToDecimal(drv["peso"])
+                };
+
+                using (FrmProdutos frm = new FrmProdutos(true, produto))
+                {
+                    frm.ShowDialog();
+
+                    // Atualiza a grid após fechar o formulário de edição
+                    this.produtosTableAdapter.Fill(this.sistemaEstoqueDataSet.produtos);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao alterar produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnExcluirProduto_Click(object sender, EventArgs e)
@@ -73,36 +108,52 @@ namespace SistemaEstoque.Telas
                 return;
             }
 
-            // Obtém a linha selecionada
-            DataRowView drv = (DataRowView)bsGrid.Current;
-            int produtoId = Convert.ToInt32(drv["id"]);
-
-            // Confirmação de exclusão
-            var confirmResult = MessageBox.Show(
-                $"Tem certeza de que deseja excluir o produto '{drv["nome"]}'?",
-                "Confirmação de Exclusão",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (confirmResult == DialogResult.Yes)
+            try
             {
-                try
+                DataRowView drv = (DataRowView)bsGrid.Current;
+                int produtoId = Convert.ToInt32(drv["id"]);
+
+                var confirmResult = MessageBox.Show(
+                    $"Tem certeza de que deseja excluir o produto '{drv["nome"]}'?",
+                    "Confirmação de Exclusão",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirmResult == DialogResult.Yes)
                 {
-                    // Exclui o produto do banco de dados
                     Banco.tbProduto produto = new Banco.tbProduto { id = produtoId };
 
                     Banco.tbProduto.Excluir(produto); // Método para realizar a exclusão no banco
 
-                    // Atualiza a lista de produtos
                     this.produtosTableAdapter.Fill(this.sistemaEstoqueDataSet.produtos);
 
                     MessageBox.Show("Produto excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception ex)
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao excluir produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void grd_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Retorna o produto selecionado ao formulário pai (se necessário)
+            if (e.RowIndex >= 0 && bsGrid.Current != null)
+            {
+                DataRowView drv = (DataRowView)bsGrid.Current;
+
+                ProdutoSelecionado = new Banco.tbProduto
                 {
-                    MessageBox.Show($"Ocorreu um erro ao tentar excluir o produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    id = Convert.ToInt32(drv["id"]),
+                    nome = drv["nome"].ToString(),
+                    descricao = drv["descricao"].ToString(),
+                    peso = Convert.ToDecimal(drv["peso"])
+                };
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
     }

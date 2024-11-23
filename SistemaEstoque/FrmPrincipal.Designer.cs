@@ -30,8 +30,8 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tROCARMUDARUSUÁRIOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locaisDeEstoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,6 +70,13 @@
             this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.arquivoToolStripMenuItem.Text = "ARQUIVO";
             // 
+            // tROCARMUDARUSUÁRIOToolStripMenuItem
+            // 
+            this.tROCARMUDARUSUÁRIOToolStripMenuItem.Name = "tROCARMUDARUSUÁRIOToolStripMenuItem";
+            this.tROCARMUDARUSUÁRIOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tROCARMUDARUSUÁRIOToolStripMenuItem.Text = "ALTERAR USUÁRIO";
+            this.tROCARMUDARUSUÁRIOToolStripMenuItem.Click += new System.EventHandler(this.tROCARMUDARUSUÁRIOToolStripMenuItem_Click);
+            // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -79,13 +86,6 @@
             this.sairToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
-            // tROCARMUDARUSUÁRIOToolStripMenuItem
-            // 
-            this.tROCARMUDARUSUÁRIOToolStripMenuItem.Name = "tROCARMUDARUSUÁRIOToolStripMenuItem";
-            this.tROCARMUDARUSUÁRIOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.tROCARMUDARUSUÁRIOToolStripMenuItem.Text = "ALTERAR USUÁRIO";
-            this.tROCARMUDARUSUÁRIOToolStripMenuItem.Click += new System.EventHandler(this.tROCARMUDARUSUÁRIOToolStripMenuItem_Click);
-            // 
             // cadastrarToolStripMenuItem
             // 
             this.cadastrarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -93,8 +93,8 @@
             this.produtosToolStripMenuItem,
             this.usuárioToolStripMenuItem});
             this.cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
-            this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.cadastrarToolStripMenuItem.Text = "CASTRAR";
+            this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.cadastrarToolStripMenuItem.Text = "CADASTRAR";
             // 
             // locaisDeEstoqueToolStripMenuItem
             // 
