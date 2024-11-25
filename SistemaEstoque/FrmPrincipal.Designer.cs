@@ -38,12 +38,12 @@
             this.usuárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cONSULARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mOVIMENTAÇÃOToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.button5 = new System.Windows.Forms.Button();
             this.BtnSairMenu = new System.Windows.Forms.Button();
             this.BtnCastroEstoqueMenu = new System.Windows.Forms.Button();
             this.BtnAlterarUsuarioMenu = new System.Windows.Forms.Button();
             this.BtnCastroMenu = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BtnMovimentacao = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,8 +67,8 @@
             this.tROCARMUDARUSUÁRIOToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
-            this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
-            this.arquivoToolStripMenuItem.Text = "ARQUIVO";
+            this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.arquivoToolStripMenuItem.Text = "ARQUIVOS";
             // 
             // tROCARMUDARUSUÁRIOToolStripMenuItem
             // 
@@ -114,7 +114,7 @@
             // 
             this.usuárioToolStripMenuItem.Name = "usuárioToolStripMenuItem";
             this.usuárioToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.usuárioToolStripMenuItem.Text = "USUÁRIO";
+            this.usuárioToolStripMenuItem.Text = "USUÁRIOS";
             // 
             // cONSULARToolStripMenuItem
             // 
@@ -127,21 +127,9 @@
             // mOVIMENTAÇÃOToolStripMenuItem1
             // 
             this.mOVIMENTAÇÃOToolStripMenuItem1.Name = "mOVIMENTAÇÃOToolStripMenuItem1";
-            this.mOVIMENTAÇÃOToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.mOVIMENTAÇÃOToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
             this.mOVIMENTAÇÃOToolStripMenuItem1.Text = "MOVIMENTAÇÃO";
             this.mOVIMENTAÇÃOToolStripMenuItem1.Click += new System.EventHandler(this.mOVIMENTAÇÃOToolStripMenuItem1_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackgroundImage = global::SistemaEstoque.Properties.Resources.equipe;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button5.Location = new System.Drawing.Point(483, 95);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(116, 101);
-            this.button5.TabIndex = 12;
-            this.button5.Text = "CADASTRAR USUÁRIO";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // BtnSairMenu
             // 
@@ -163,9 +151,9 @@
             this.BtnCastroEstoqueMenu.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnCastroEstoqueMenu.Location = new System.Drawing.Point(293, 95);
             this.BtnCastroEstoqueMenu.Name = "BtnCastroEstoqueMenu";
-            this.BtnCastroEstoqueMenu.Size = new System.Drawing.Size(116, 101);
+            this.BtnCastroEstoqueMenu.Size = new System.Drawing.Size(122, 101);
             this.BtnCastroEstoqueMenu.TabIndex = 10;
-            this.BtnCastroEstoqueMenu.Text = "CASTRAR LOCAL DE ESTOQUE";
+            this.BtnCastroEstoqueMenu.Text = "CADASTRAR LOCAL DE ESTOQUE";
             this.BtnCastroEstoqueMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnCastroEstoqueMenu.UseVisualStyleBackColor = true;
             this.BtnCastroEstoqueMenu.Click += new System.EventHandler(this.BtnCastroEstoqueMenu_Click);
@@ -207,6 +195,21 @@
             this.panel2.Size = new System.Drawing.Size(96, 66);
             this.panel2.TabIndex = 7;
             // 
+            // BtnMovimentacao
+            // 
+            this.BtnMovimentacao.BackColor = System.Drawing.Color.Transparent;
+            this.BtnMovimentacao.BackgroundImage = global::SistemaEstoque.Properties.Resources.movimentacao_de_carga;
+            this.BtnMovimentacao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnMovimentacao.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BtnMovimentacao.Location = new System.Drawing.Point(498, 95);
+            this.BtnMovimentacao.Name = "BtnMovimentacao";
+            this.BtnMovimentacao.Size = new System.Drawing.Size(116, 101);
+            this.BtnMovimentacao.TabIndex = 13;
+            this.BtnMovimentacao.Text = "MOVIMENTAÇÃO";
+            this.BtnMovimentacao.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnMovimentacao.UseVisualStyleBackColor = false;
+            this.BtnMovimentacao.Click += new System.EventHandler(this.BtnMovimentacao_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,7 +218,7 @@
             this.BackgroundImage = global::SistemaEstoque.Properties.Resources.fundo_sistema;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(804, 451);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.BtnMovimentacao);
             this.Controls.Add(this.BtnSairMenu);
             this.Controls.Add(this.BtnCastroEstoqueMenu);
             this.Controls.Add(this.BtnAlterarUsuarioMenu);
@@ -225,6 +228,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(820, 490);
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -249,12 +253,12 @@
         private System.Windows.Forms.ToolStripMenuItem cONSULARToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mOVIMENTAÇÃOToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem tROCARMUDARUSUÁRIOToolStripMenuItem;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button BtnSairMenu;
         private System.Windows.Forms.Button BtnCastroEstoqueMenu;
         private System.Windows.Forms.Button BtnAlterarUsuarioMenu;
         private System.Windows.Forms.Button BtnCastroMenu;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button BtnMovimentacao;
     }
 }
 

@@ -103,7 +103,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "FrmLocalEstoque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmLocalEstoque";
+            this.Text = "FRUIT MASTER - CADASTRO DE LOCAIS DE ESTOQUE";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

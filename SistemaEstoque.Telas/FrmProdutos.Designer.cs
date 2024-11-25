@@ -145,7 +145,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "FrmProdutos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FRUIT MASTER - CASTRO PRODUTO";
+            this.Text = "FRUIT MASTER - CADASTRO DE PRODUTO";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

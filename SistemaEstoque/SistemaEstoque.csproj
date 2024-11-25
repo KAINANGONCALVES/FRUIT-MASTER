@@ -130,5 +130,11 @@
   <ItemGroup>
     <None Include="Resources\desligar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Movimentação.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\movimentacao-de-carga.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

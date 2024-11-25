@@ -129,5 +129,11 @@ namespace SistemaEstoque
             SistemaEstoque.Telas.FrmListaMovimentacao frm = new SistemaEstoque.Telas.FrmListaMovimentacao();
             frm.Show();
         }
+
+        private void BtnMovimentacao_Click(object sender, EventArgs e)
+        {
+            SistemaEstoque.Telas.FrmListaMovimentacao frm = new SistemaEstoque.Telas.FrmListaMovimentacao();
+            frm.Show();
+        }
     }
 }

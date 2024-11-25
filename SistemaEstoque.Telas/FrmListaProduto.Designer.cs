@@ -32,6 +32,8 @@ namespace SistemaEstoque.Telas
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnFechar = new System.Windows.Forms.Button();
+            this.BtnNovo = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grd = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,12 +45,10 @@ namespace SistemaEstoque.Telas
             this.TxtFiltro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.produtosTableAdapter = new SistemaEstoque.Telas.SistemaEstoqueDataSetTableAdapters.produtosTableAdapter();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.BtnExcluirProduto = new System.Windows.Forms.Button();
             this.BtnAlterarProduto = new System.Windows.Forms.Button();
-            this.BtnFechar = new System.Windows.Forms.Button();
-            this.BtnNovo = new System.Windows.Forms.Button();
+            this.produtosTableAdapter = new SistemaEstoque.Telas.SistemaEstoqueDataSetTableAdapters.produtosTableAdapter();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd)).BeginInit();
@@ -68,6 +68,33 @@ namespace SistemaEstoque.Telas
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(695, 59);
             this.panel1.TabIndex = 0;
+            // 
+            // BtnFechar
+            // 
+            this.BtnFechar.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.seta_esquerda;
+            this.BtnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnFechar.Location = new System.Drawing.Point(139, -12);
+            this.BtnFechar.Name = "BtnFechar";
+            this.BtnFechar.Size = new System.Drawing.Size(107, 71);
+            this.BtnFechar.TabIndex = 1;
+            this.BtnFechar.Text = "VOLTAR";
+            this.BtnFechar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnFechar.UseVisualStyleBackColor = true;
+            this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
+            // 
+            // BtnNovo
+            // 
+            this.BtnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnNovo.Image = global::SistemaEstoque.Telas.Properties.Resources.cadastro;
+            this.BtnNovo.Location = new System.Drawing.Point(15, -12);
+            this.BtnNovo.Name = "BtnNovo";
+            this.BtnNovo.Size = new System.Drawing.Size(107, 71);
+            this.BtnNovo.TabIndex = 0;
+            this.BtnNovo.Text = "NOVO";
+            this.BtnNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnNovo.UseVisualStyleBackColor = true;
+            this.BtnNovo.Click += new System.EventHandler(this.BtnNovo_Click);
             // 
             // panel2
             // 
@@ -150,9 +177,9 @@ namespace SistemaEstoque.Telas
             this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(15, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 13);
+            this.label1.Size = new System.Drawing.Size(225, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Digite o produto que Procura";
+            this.label1.Text = "DIGITE O PRODUTO QUE VOCÊ PROCURA";
             // 
             // panel3
             // 
@@ -167,27 +194,13 @@ namespace SistemaEstoque.Telas
             this.panel3.Size = new System.Drawing.Size(183, 311);
             this.panel3.TabIndex = 2;
             // 
-            // produtosTableAdapter
-            // 
-            this.produtosTableAdapter.ClearBeforeFill = true;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.cara;
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(612, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(104, 93);
-            this.panel4.TabIndex = 2;
-            // 
             // BtnExcluirProduto
             // 
             this.BtnExcluirProduto.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.excluir;
             this.BtnExcluirProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnExcluirProduto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnExcluirProduto.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnExcluirProduto.Location = new System.Drawing.Point(29, 149);
+            this.BtnExcluirProduto.Location = new System.Drawing.Point(48, 148);
             this.BtnExcluirProduto.Name = "BtnExcluirProduto";
             this.BtnExcluirProduto.Size = new System.Drawing.Size(132, 70);
             this.BtnExcluirProduto.TabIndex = 2;
@@ -201,7 +214,7 @@ namespace SistemaEstoque.Telas
             this.BtnAlterarProduto.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.retomar;
             this.BtnAlterarProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnAlterarProduto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnAlterarProduto.Location = new System.Drawing.Point(29, 43);
+            this.BtnAlterarProduto.Location = new System.Drawing.Point(48, 43);
             this.BtnAlterarProduto.Name = "BtnAlterarProduto";
             this.BtnAlterarProduto.Size = new System.Drawing.Size(132, 70);
             this.BtnAlterarProduto.TabIndex = 1;
@@ -210,32 +223,19 @@ namespace SistemaEstoque.Telas
             this.BtnAlterarProduto.UseVisualStyleBackColor = true;
             this.BtnAlterarProduto.Click += new System.EventHandler(this.BtnAlterarProduto_Click);
             // 
-            // BtnFechar
+            // produtosTableAdapter
             // 
-            this.BtnFechar.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.seta_esquerda;
-            this.BtnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnFechar.Location = new System.Drawing.Point(139, -12);
-            this.BtnFechar.Name = "BtnFechar";
-            this.BtnFechar.Size = new System.Drawing.Size(107, 71);
-            this.BtnFechar.TabIndex = 1;
-            this.BtnFechar.Text = "VOLTAR";
-            this.BtnFechar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnFechar.UseVisualStyleBackColor = true;
-            this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
+            this.produtosTableAdapter.ClearBeforeFill = true;
             // 
-            // BtnNovo
+            // panel4
             // 
-            this.BtnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnNovo.Image = global::SistemaEstoque.Telas.Properties.Resources.cadastro;
-            this.BtnNovo.Location = new System.Drawing.Point(15, -12);
-            this.BtnNovo.Name = "BtnNovo";
-            this.BtnNovo.Size = new System.Drawing.Size(107, 71);
-            this.BtnNovo.TabIndex = 0;
-            this.BtnNovo.Text = "NOVO PRODUTO";
-            this.BtnNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnNovo.UseVisualStyleBackColor = true;
-            this.BtnNovo.Click += new System.EventHandler(this.BtnNovo_Click);
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.cara;
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.Location = new System.Drawing.Point(612, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(104, 93);
+            this.panel4.TabIndex = 2;
             // 
             // FrmListaProduto
             // 

@@ -33,7 +33,6 @@ namespace SistemaEstoque.Telas
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnFechar = new System.Windows.Forms.Button();
             this.BtnNovo = new System.Windows.Forms.Button();
@@ -44,7 +43,7 @@ namespace SistemaEstoque.Telas
             this.grdLocalEstoque = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.localestoqueBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.localestoqueBindingSource = new System.Windows.Forms.BindingSource();
             this.sistemaEstoqueDataSet2 = new SistemaEstoque.Telas.SistemaEstoqueDataSet2();
             this.TxtFiltro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -71,7 +70,7 @@ namespace SistemaEstoque.Telas
             // BtnFechar
             // 
             this.BtnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnFechar.Image = global::SistemaEstoque.Telas.Properties.Resources.excluir;
+            this.BtnFechar.Image = global::SistemaEstoque.Telas.Properties.Resources.seta_esquerda;
             this.BtnFechar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.BtnFechar.Location = new System.Drawing.Point(191, 0);
             this.BtnFechar.Name = "BtnFechar";
@@ -224,7 +223,7 @@ namespace SistemaEstoque.Telas
             this.Controls.Add(this.panel1);
             this.Name = "FrmListaLocalEstoque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FRUIT MASTER - LISTA LOCAL DE ESTOQUE";
+            this.Text = "FRUIT MASTER - LISTA DE LOCAIS DE ESTOQUE";
             this.Load += new System.EventHandler(this.FrmListaLocalEstoque_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);

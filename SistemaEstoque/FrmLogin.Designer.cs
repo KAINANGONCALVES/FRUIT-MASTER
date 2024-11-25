@@ -130,7 +130,7 @@
             this.MinimumSize = new System.Drawing.Size(425, 269);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FRUIT MASTER";
+            this.Text = "FRUIT MASTER - LOGIN";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -35,17 +35,7 @@ namespace SistemaEstoque.Telas
             this.BtnFechar = new System.Windows.Forms.Button();
             this.BtnNovo = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.TxtFiltro = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.BtnExcluirProduto = new System.Windows.Forms.Button();
-            this.BtnAlterarProduto = new System.Windows.Forms.Button();
-            this.produtosTableAdapter = new SistemaEstoque.Telas.SistemaEstoqueDataSetTableAdapters.produtosTableAdapter();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.grdMovimentacao = new System.Windows.Forms.DataGridView();
-            this.sistemaEstoqueDataSet7 = new SistemaEstoque.Telas.SistemaEstoqueDataSet7();
-            this.movimentacaoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.movimentacaoTableAdapter = new SistemaEstoque.Telas.SistemaEstoqueDataSet7TableAdapters.movimentacaoTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idprodutoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idlocalestoqueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,12 +43,22 @@ namespace SistemaEstoque.Telas
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saidaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.descricaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.movimentacaoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sistemaEstoqueDataSet7 = new SistemaEstoque.Telas.SistemaEstoqueDataSet7();
+            this.TxtFiltro = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.BtnExcluirProduto = new System.Windows.Forms.Button();
+            this.BtnAlterarProduto = new System.Windows.Forms.Button();
+            this.produtosTableAdapter = new SistemaEstoque.Telas.SistemaEstoqueDataSetTableAdapters.produtosTableAdapter();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.movimentacaoTableAdapter = new SistemaEstoque.Telas.SistemaEstoqueDataSet7TableAdapters.movimentacaoTableAdapter();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMovimentacao)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sistemaEstoqueDataSet7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movimentacaoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemaEstoqueDataSet7)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -114,80 +114,6 @@ namespace SistemaEstoque.Telas
             this.panel2.Size = new System.Drawing.Size(778, 318);
             this.panel2.TabIndex = 1;
             // 
-            // TxtFiltro
-            // 
-            this.TxtFiltro.Location = new System.Drawing.Point(15, 43);
-            this.TxtFiltro.Name = "TxtFiltro";
-            this.TxtFiltro.Size = new System.Drawing.Size(258, 20);
-            this.TxtFiltro.TabIndex = 1;
-            this.TxtFiltro.TextChanged += new System.EventHandler(this.TxtFiltro_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(15, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Digite o produto que Procura";
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.Controls.Add(this.BtnExcluirProduto);
-            this.panel3.Controls.Add(this.BtnAlterarProduto);
-            this.panel3.Location = new System.Drawing.Point(771, 77);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(179, 318);
-            this.panel3.TabIndex = 2;
-            // 
-            // BtnExcluirProduto
-            // 
-            this.BtnExcluirProduto.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.excluir;
-            this.BtnExcluirProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnExcluirProduto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnExcluirProduto.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnExcluirProduto.Location = new System.Drawing.Point(32, 204);
-            this.BtnExcluirProduto.Name = "BtnExcluirProduto";
-            this.BtnExcluirProduto.Size = new System.Drawing.Size(132, 70);
-            this.BtnExcluirProduto.TabIndex = 2;
-            this.BtnExcluirProduto.Text = "EXCLUIR PRODUTO";
-            this.BtnExcluirProduto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnExcluirProduto.UseVisualStyleBackColor = true;
-            this.BtnExcluirProduto.Click += new System.EventHandler(this.BtnExcluirProduto_Click);
-            // 
-            // BtnAlterarProduto
-            // 
-            this.BtnAlterarProduto.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.retomar;
-            this.BtnAlterarProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnAlterarProduto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnAlterarProduto.Location = new System.Drawing.Point(32, 68);
-            this.BtnAlterarProduto.Name = "BtnAlterarProduto";
-            this.BtnAlterarProduto.Size = new System.Drawing.Size(132, 70);
-            this.BtnAlterarProduto.TabIndex = 1;
-            this.BtnAlterarProduto.Text = "ALTERAR PRODUTO";
-            this.BtnAlterarProduto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnAlterarProduto.UseVisualStyleBackColor = true;
-            this.BtnAlterarProduto.Click += new System.EventHandler(this.BtnAlterarProduto_Click);
-            // 
-            // produtosTableAdapter
-            // 
-            this.produtosTableAdapter.ClearBeforeFill = true;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.cara;
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(861, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(104, 93);
-            this.panel4.TabIndex = 2;
-            // 
             // grdMovimentacao
             // 
             this.grdMovimentacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -208,20 +134,6 @@ namespace SistemaEstoque.Telas
             this.grdMovimentacao.Name = "grdMovimentacao";
             this.grdMovimentacao.Size = new System.Drawing.Size(738, 249);
             this.grdMovimentacao.TabIndex = 2;
-            // 
-            // sistemaEstoqueDataSet7
-            // 
-            this.sistemaEstoqueDataSet7.DataSetName = "SistemaEstoqueDataSet7";
-            this.sistemaEstoqueDataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // movimentacaoBindingSource
-            // 
-            this.movimentacaoBindingSource.DataMember = "movimentacao";
-            this.movimentacaoBindingSource.DataSource = this.sistemaEstoqueDataSet7;
-            // 
-            // movimentacaoTableAdapter
-            // 
-            this.movimentacaoTableAdapter.ClearBeforeFill = true;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -266,6 +178,94 @@ namespace SistemaEstoque.Telas
             this.descricaoDataGridViewTextBoxColumn.HeaderText = "descricao";
             this.descricaoDataGridViewTextBoxColumn.Name = "descricaoDataGridViewTextBoxColumn";
             // 
+            // movimentacaoBindingSource
+            // 
+            this.movimentacaoBindingSource.DataMember = "movimentacao";
+            this.movimentacaoBindingSource.DataSource = this.sistemaEstoqueDataSet7;
+            // 
+            // sistemaEstoqueDataSet7
+            // 
+            this.sistemaEstoqueDataSet7.DataSetName = "SistemaEstoqueDataSet7";
+            this.sistemaEstoqueDataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // TxtFiltro
+            // 
+            this.TxtFiltro.Location = new System.Drawing.Point(15, 43);
+            this.TxtFiltro.Name = "TxtFiltro";
+            this.TxtFiltro.Size = new System.Drawing.Size(258, 20);
+            this.TxtFiltro.TabIndex = 1;
+            this.TxtFiltro.TextChanged += new System.EventHandler(this.TxtFiltro_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(15, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Digite o produto que Procura";
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.BtnExcluirProduto);
+            this.panel3.Controls.Add(this.BtnAlterarProduto);
+            this.panel3.Location = new System.Drawing.Point(771, 77);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(179, 318);
+            this.panel3.TabIndex = 2;
+            // 
+            // BtnExcluirProduto
+            // 
+            this.BtnExcluirProduto.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.excluir;
+            this.BtnExcluirProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnExcluirProduto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnExcluirProduto.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnExcluirProduto.Location = new System.Drawing.Point(32, 196);
+            this.BtnExcluirProduto.Name = "BtnExcluirProduto";
+            this.BtnExcluirProduto.Size = new System.Drawing.Size(132, 104);
+            this.BtnExcluirProduto.TabIndex = 2;
+            this.BtnExcluirProduto.Text = "EXCLUIR MOVIMENTACAO";
+            this.BtnExcluirProduto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnExcluirProduto.UseVisualStyleBackColor = true;
+            this.BtnExcluirProduto.Click += new System.EventHandler(this.BtnExcluirProduto_Click);
+            // 
+            // BtnAlterarProduto
+            // 
+            this.BtnAlterarProduto.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.retomar;
+            this.BtnAlterarProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnAlterarProduto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAlterarProduto.Location = new System.Drawing.Point(32, 69);
+            this.BtnAlterarProduto.Name = "BtnAlterarProduto";
+            this.BtnAlterarProduto.Size = new System.Drawing.Size(132, 95);
+            this.BtnAlterarProduto.TabIndex = 1;
+            this.BtnAlterarProduto.Text = "ALTERAR MOVIMENTAÇÃO";
+            this.BtnAlterarProduto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnAlterarProduto.UseVisualStyleBackColor = true;
+            this.BtnAlterarProduto.Click += new System.EventHandler(this.BtnAlterarProduto_Click);
+            // 
+            // produtosTableAdapter
+            // 
+            this.produtosTableAdapter.ClearBeforeFill = true;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.BackgroundImage = global::SistemaEstoque.Telas.Properties.Resources.cara;
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.Location = new System.Drawing.Point(861, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(104, 93);
+            this.panel4.TabIndex = 2;
+            // 
+            // movimentacaoTableAdapter
+            // 
+            this.movimentacaoTableAdapter.ClearBeforeFill = true;
+            // 
             // FrmListaMovimentacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,10 +283,10 @@ namespace SistemaEstoque.Telas
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdMovimentacao)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sistemaEstoqueDataSet7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movimentacaoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemaEstoqueDataSet7)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
